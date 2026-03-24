@@ -164,7 +164,7 @@ export default async function RecipePage({ params }) {
 
         <div style={{ background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)', borderRadius: '20px', padding: '24px', textAlign: 'center' }}>
           <p style={{ color: 'white', fontSize: '17px', fontWeight: '700', marginBottom: '6px' }}>¿Te gustó esta receta?</p>
-          <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '13px', marginBottom: '18px', lineHeight: 1.4 }}>Descure nuevas recetas cada semana. Descárgala gratis.</p>
+          <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '13px', marginBottom: '18px', lineHeight: 1.4 }}>Descubre nuevas recetas cada semana. Descárgala gratis.</p>
           <a href={APP_STORE_URL} style={{ display: 'inline-block', background: '#EC4899', color: 'white', padding: '14px 32px', borderRadius: '999px', fontSize: '15px', fontWeight: '700', textDecoration: 'none' }}>
             Descargar gratis en el App Store
           </a>
