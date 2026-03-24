@@ -80,10 +80,10 @@ export default async function RecipePage({ params }) {
           <div style={{ width: '36px', height: '36px', background: 'white', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', flexShrink: 0 }}>🍴</div>
           <div>
             <p style={{ color: 'white', fontSize: '13px', fontWeight: '700', lineHeight: 1.2 }}>La Mia Cucina</p>
-            <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '11px' }}>95+ recetas · Gratis</p>
+            <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '11px' }}>Descubre nuevas recetas cada día</p>
           </div>
         </div>
-        <a href={APP_STORE_URL} style={{ background: 'white', color: '#10B981', padding: '8px 16px', borderRadius: '999px', fontSize: '13px', fontWeight: '700', textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
+        <a href={APP_STORE_URL} style={{ background: '#EC4899', color: 'white', padding: '8px 16px', borderRadius: '999px', fontSize: '13px', fontWeight: '700', textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
           Descargar gratis
         </a>
       </div>
@@ -164,7 +164,7 @@ export default async function RecipePage({ params }) {
 
         <div style={{ background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)', borderRadius: '20px', padding: '24px', textAlign: 'center' }}>
           <p style={{ color: 'white', fontSize: '17px', fontWeight: '700', marginBottom: '6px' }}>¿Te gustó esta receta?</p>
-          <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '13px', marginBottom: '18px', lineHeight: 1.4 }}>Tenemos 95+ recetas más en La Mia Cucina. Descárgala gratis.</p>
+          <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '13px', marginBottom: '18px', lineHeight: 1.4 }}>Descure nuevas recetas cada semana. Descárgala gratis.</p>
           <a href={APP_STORE_URL} style={{ display: 'inline-block', background: 'white', color: '#10B981', padding: '14px 32px', borderRadius: '999px', fontSize: '15px', fontWeight: '700', textDecoration: 'none' }}>
             Descargar gratis en el App Store
           </a>
