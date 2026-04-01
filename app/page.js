@@ -6,8 +6,10 @@ const supabase = createClient(
 );
 
 const FEATURED_RECIPE_IDS = [
-  // Reemplaza con los UUIDs reales de las 4 recetas que quieres destacar
-  // Ejemplo: 'f03f7aa7-bc26-4a82-ad7c-885a558bcf9a'
+  '1373c327-2f9d-4eb2-8f4b-c2471a24dcbc',
+  '14853726-4175-4115-b8bf-1e57ed1ba6bf',
+  '6acc3f28-d3a7-422a-93e8-6f0600a320df',
+  'c148147b-7bb3-4b3b-8a9b-4ab74942718f'
 ];
 
 const getDifficultyLabel = (d) => {
