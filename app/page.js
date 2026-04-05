@@ -148,6 +148,16 @@ export default async function HomePage() {
         .cta-sub { font-size: 16px; color: rgba(255,255,255,0.85); margin-bottom: 32px; }
         .btn-download { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: white; color: #EC4899; padding: 16px 32px; border-radius: 999px; font-size: 16px; font-weight: 700; box-shadow: 0 4px 24px rgba(0,0,0,0.15); }
         .cta-note { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 14px; }
+        .faq { background: #F0FDF9; padding: 48px 24px; border-top: 1px solid #E5E7EB; }
+        .faq-inner { max-width: 600px; margin: 0 auto; }
+        .faq h2 { font-size: 22px; font-weight: 700; color: #111827; margin-bottom: 24px; }
+        .faq details { border-bottom: 1px solid #E5E7EB; }
+        .faq details:first-of-type { border-top: 1px solid #E5E7EB; }
+        .faq summary { padding: 16px 0; font-size: 15px; font-weight: 600; color: #111827; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+        .faq summary::-webkit-details-marker { display: none; }
+        .faq summary::after { content: '+'; font-size: 20px; font-weight: 300; color: #10B981; flex-shrink: 0; line-height: 1; }
+        .faq details[open] summary::after { content: '−'; }
+        .faq-answer { font-size: 14px; color: #6B7280; line-height: 1.65; padding-bottom: 16px; }
         footer { background: #111827; padding: 16px 24px; text-align: center; }
         footer p { font-size: 11px; color: rgba(255,255,255,0.4); }
         footer span { color: #10B981; }
@@ -343,6 +353,62 @@ export default async function HomePage() {
         </a>
         <p className="cta-note">iPhone · iOS 16 o superior</p>
       </div>
+
+      {/* JSON-LD */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([
+        {
+          "@context": "https://schema.org",
+          "@type": "MobileApplication",
+          "name": "La Mia Cucina",
+          "operatingSystem": "iOS",
+          "applicationCategory": "FoodAndDrinkApplication",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+          "downloadUrl": "https://apps.apple.com/app/id6757924220"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "¿La Mia Cucina es gratis?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, gratis para descargar y usar. Sin suscripción ni pagos." } },
+            { "@type": "Question", "name": "¿En qué idioma está la app?", "acceptedAnswer": { "@type": "Answer", "text": "Toda la app está en español latinoamericano." } },
+            { "@type": "Question", "name": "¿Qué tipo de recetas tiene?", "acceptedAnswer": { "@type": "Answer", "text": "Italiana, colombiana, mexicana, casera rápida, saludable, postres y más." } },
+            { "@type": "Question", "name": "¿Qué es Chef Mía?", "acceptedAnswer": { "@type": "Answer", "text": "Tu asistente IA — dile qué tienes en la nevera y te sugiere recetas de la app." } },
+            { "@type": "Question", "name": "¿Funciona sin internet?", "acceptedAnswer": { "@type": "Answer", "text": "Los favoritos guardados están disponibles offline. Chef Mía requiere internet." } },
+            { "@type": "Question", "name": "¿Está disponible para Android?", "acceptedAnswer": { "@type": "Answer", "text": "Por ahora solo para iPhone. Android está en planes futuros." } }
+          ]
+        }
+      ]) }} />
+
+      {/* FAQ */}
+      <section className="faq">
+        <div className="faq-inner">
+          <h2>Preguntas frecuentes</h2>
+          <details>
+            <summary>¿La Mia Cucina es gratis?</summary>
+            <p className="faq-answer">Sí, gratis para descargar y usar. Sin suscripción ni pagos.</p>
+          </details>
+          <details>
+            <summary>¿En qué idioma está la app?</summary>
+            <p className="faq-answer">Toda la app está en español latinoamericano.</p>
+          </details>
+          <details>
+            <summary>¿Qué tipo de recetas tiene?</summary>
+            <p className="faq-answer">Italiana, colombiana, mexicana, casera rápida, saludable, postres y más.</p>
+          </details>
+          <details>
+            <summary>¿Qué es Chef Mía?</summary>
+            <p className="faq-answer">Tu asistente IA — dile qué tienes en la nevera y te sugiere recetas de la app.</p>
+          </details>
+          <details>
+            <summary>¿Funciona sin internet?</summary>
+            <p className="faq-answer">Los favoritos guardados están disponibles offline. Chef Mía requiere internet.</p>
+          </details>
+          <details>
+            <summary>¿Está disponible para Android?</summary>
+            <p className="faq-answer">Por ahora solo para iPhone. Android está en planes futuros.</p>
+          </details>
+        </div>
+      </section>
 
       {/* FOOTER */}
       <footer>

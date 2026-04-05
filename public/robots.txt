@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://lamiacucina.app/sitemap.xml

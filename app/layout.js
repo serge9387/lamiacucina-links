@@ -2,11 +2,22 @@ import { Analytics } from '@vercel/analytics/next';
 import './globals.css'
 
 export const metadata = {
-  title: 'La Mia Cucina — Recetas',
-  description: 'Tu colección personal de recetas para hacer en casa.',
+  title: 'La Mia Cucina — Tu colección personal de recetas',
+  description: 'App gratis para iPhone con recetas curadas de cocina italiana, colombiana, mexicana y más. Con Chef Mía, tu asistente IA personal.',
   icons: {
     icon: 'https://xyxdgyqduvjsepzyblju.supabase.co/storage/v1/object/public/Assets/icon.png',
     apple: 'https://xyxdgyqduvjsepzyblju.supabase.co/storage/v1/object/public/Assets/icon.png',
+  },
+  openGraph: {
+    title: 'La Mia Cucina — Tu colección personal de recetas',
+    description: 'App gratis para iPhone con recetas curadas de cocina italiana, colombiana, mexicana y más. Con Chef Mía, tu asistente IA personal.',
+    url: 'https://lamiacucina.app',
+    siteName: 'La Mia Cucina',
+    locale: 'es_CO',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
   },
 }
 
