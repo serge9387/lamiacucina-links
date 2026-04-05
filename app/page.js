@@ -78,21 +78,23 @@ export default async function HomePage() {
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; background: #F0FDF9; color: #111827; }
         a { text-decoration: none; }
-        .header { background: #10B981; padding: 14px 28px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; }
-        .header-left { display: flex; align-items: center; gap: 10px; }
-        .app-icon { width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
-        .app-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .app-name { font-size: 14px; font-weight: 700; color: white; line-height: 1.2; }
-        .app-sub { font-size: 11px; color: rgba(255,255,255,0.75); margin-top: 1px; }
-        .header-center { text-align: center; }
-        .header-center p { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.96); line-height: 1.5; max-width: 360px; }
-        .header-right { display: flex; justify-content: flex-end; }
-        .btn-header { display: inline-flex; align-items: center; gap: 7px; background: #EC4899; color: white; padding: 10px 18px; border-radius: 999px; font-size: 13px; font-weight: 600; white-space: nowrap; box-shadow: 0 2px 12px rgba(236,72,153,0.4); }
+        .hero { background: #10B981; padding: 64px 48px; display: flex; align-items: center; justify-content: center; gap: 56px; }
+        .hero-left { flex: 1; max-width: 500px; }
+        .hero-right { flex-shrink: 0; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.2); color: white; padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 600; margin-bottom: 20px; }
+        .hero-headline { font-size: 44px; font-weight: 800; color: white; line-height: 1.1; margin-bottom: 16px; letter-spacing: -0.5px; }
+        .hero-sub { font-size: 16px; color: rgba(255,255,255,0.85); line-height: 1.65; margin-bottom: 32px; max-width: 420px; }
+        .btn-hero { display: inline-flex; align-items: center; gap: 10px; background: #EC4899; color: white; padding: 16px 28px; border-radius: 999px; font-size: 16px; font-weight: 700; box-shadow: 0 4px 24px rgba(236,72,153,0.5); margin-bottom: 12px; }
+        .hero-note { font-size: 12px; color: rgba(255,255,255,0.6); }
+        .phone-frame { width: 220px; height: 450px; background: #111; border-radius: 40px; padding: 8px; box-shadow: 0 24px 64px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.08); }
+        .phone-screen { width: 100%; height: 100%; border-radius: 34px; overflow: hidden; }
+        .phone-screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .stats { display: flex; background: white; border-bottom: 1px solid #F3F4F6; }
-        .stat { flex: 1; padding: 16px 8px; text-align: center; border-right: 1px solid #F3F4F6; }
+        .stat { flex: 1; padding: 18px 8px; text-align: center; border-right: 1px solid #E5E7EB; }
         .stat:last-child { border-right: none; }
-        .stat-value { font-size: 14px; font-weight: 700; color: #10B981; display: block; }
-        .stat-label { font-size: 12px; color: #6B7280; margin-top: 2px; display: block; }
+        .stat-value { font-size: 15px; font-weight: 700; color: #111827; display: block; }
+        .stat-value-pink { font-size: 15px; font-weight: 700; color: #EC4899; display: block; }
+        .stat-label { font-size: 11px; color: #6B7280; margin-top: 3px; display: block; }
         .section { padding: 28px 24px; max-width: 600px; margin: 0 auto; }
         .section-header { margin-bottom: 16px; }
         .section-header h2 { font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 3px; }
@@ -124,52 +126,59 @@ export default async function HomePage() {
         footer { background: #111827; padding: 16px 24px; text-align: center; }
         footer p { font-size: 11px; color: rgba(255,255,255,0.4); }
         footer span { color: #10B981; }
-        @media (max-width: 600px) {
-          .header { grid-template-columns: auto 1fr; grid-template-rows: auto auto; gap: 10px; padding: 12px 16px; }
-          .header-center { grid-column: 1 / -1; grid-row: 2; text-align: left; }
-          .header-center p { font-size: 12px; }
-          .header-right { grid-row: 1; }
-          .btn-header { font-size: 12px; padding: 8px 14px; }
+        @media (max-width: 720px) {
+          .hero { flex-direction: column; padding: 40px 24px; text-align: center; gap: 36px; }
+          .hero-headline { font-size: 30px; }
+          .hero-sub { font-size: 15px; margin-left: auto; margin-right: auto; }
+          .hero-badge { margin-left: auto; margin-right: auto; }
+          .hero-right { order: 2; }
+          .hero-left { order: 1; }
         }
       `}</style>
 
-      {/* HEADER */}
-      <header className="header">
-        <div className="header-left">
-          <div className="app-icon">
-            <img src={ICON_URL} alt="La Mia Cucina" />
+      {/* HERO */}
+      <section className="hero">
+        <div className="hero-left">
+          <div className="hero-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            Disponible gratis en App Store
           </div>
+          <h1 className="hero-headline">Deja de buscar.<br/>Empieza a cocinar.</h1>
+          <p className="hero-sub">Tu colección personal de recetas curadas, con una IA que te dice qué cocinar con lo que tienes en casa.</p>
           <div>
-            <p className="app-name">La Mia Cucina</p>
-            <p className="app-sub">Descubre nuevas recetas cada día</p>
+            <a href={APP_STORE_URL} className="btn-hero">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              Descargar gratis
+            </a>
+            <p className="hero-note">iPhone · iOS 16 o superior · Sin tarjeta</p>
           </div>
         </div>
-
-        <div className="header-center">
-          <p>Tu colección personal de recetas para hacer en casa. Italianas, mexicanas, colombianas y más.</p>
+        <div className="hero-right">
+          <div className="phone-frame">
+            <div className="phone-screen">
+              <img src="/images/F5D5CD95-35FA-42D7-B390-7A3F46D7A29C_1_201_a.jpeg" alt="La Mia Cucina app screenshot" />
+            </div>
+          </div>
         </div>
-
-        <div className="header-right">
-          <a href={APP_STORE_URL} className="btn-header">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-            Descargar gratis
-          </a>
-        </div>
-      </header>
+      </section>
 
       {/* STATS */}
       <div className="stats">
         <div className="stat">
-          <span className="stat-value">Variedad</span>
-          <span className="stat-label">de recetas</span>
+          <span className="stat-value">8+</span>
+          <span className="stat-label">cocinas del mundo</span>
         </div>
         <div className="stat">
-          <span className="stat-value">Fáciles</span>
-          <span className="stat-label">de seguir</span>
+          <span className="stat-value">15'</span>
+          <span className="stat-label">receta más rápida</span>
         </div>
         <div className="stat">
           <span className="stat-value">Gratis</span>
-          <span className="stat-label">en App Store</span>
+          <span className="stat-label">para descargar</span>
+        </div>
+        <div className="stat">
+          <span className="stat-value-pink">Chef Mía</span>
+          <span className="stat-label">IA incluida</span>
         </div>
       </div>
 
