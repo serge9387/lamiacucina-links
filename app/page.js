@@ -119,6 +119,30 @@ export default async function HomePage() {
         .feature-icon img { width: 100%; height: 100%; object-fit: cover; }
         .feature-text h3 { font-size: 14px; font-weight: 600; margin-bottom: 2px; color: #111827; }
         .feature-text p { font-size: 13px; color: #6B7280; line-height: 1.5; }
+        .chef-mia { background: #1F2937; padding: 64px 48px; display: flex; align-items: center; justify-content: center; gap: 56px; }
+        .chef-mia-left { flex: 1; max-width: 460px; }
+        .chef-mia-right { flex: 1; max-width: 380px; }
+        .chef-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+        .chef-avatar-sm { width: 32px; height: 32px; border-radius: 50%; border: 2px solid #EC4899; overflow: hidden; flex-shrink: 0; }
+        .chef-avatar-sm img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .chef-eyebrow-text { font-size: 13px; font-weight: 600; color: #EC4899; }
+        .chef-title { font-size: 36px; font-weight: 800; color: white; line-height: 1.15; margin-bottom: 16px; letter-spacing: -0.3px; }
+        .chef-desc { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.65; margin-bottom: 28px; }
+        .chef-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+        .chef-chip { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.85); font-size: 12px; font-weight: 500; padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.15); }
+        .chat { display: flex; flex-direction: column; gap: 12px; }
+        .chat-bubble-wrap { display: flex; align-items: flex-end; gap: 8px; }
+        .chat-bubble-wrap.user { flex-direction: row-reverse; }
+        .bubble-text { padding: 12px 16px; border-radius: 18px; font-size: 14px; line-height: 1.5; max-width: 280px; }
+        .bubble-user { background: #EC4899; color: white; border-bottom-right-radius: 4px; }
+        .bubble-mia { background: rgba(255,255,255,0.12); color: white; border-bottom-left-radius: 4px; border: 1px solid rgba(255,255,255,0.15); }
+        .chat-avatar { width: 28px; height: 28px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: #374151; }
+        .chat-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; text-align: left; }
+        .feature-col { display: flex; flex-direction: column; gap: 12px; }
+        .feature-icon-circle { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .feature-col h3 { font-size: 15px; font-weight: 700; color: #111827; }
+        .feature-col p { font-size: 13px; color: #6B7280; line-height: 1.6; }
         .cta { padding: 32px 24px 44px; text-align: center; max-width: 600px; margin: 0 auto; }
         .cta h2 { font-size: 22px; font-weight: 700; margin-bottom: 20px; }
         .btn-download { display: flex; align-items: center; justify-content: center; gap: 10px; background: #EC4899; color: white; padding: 16px 32px; border-radius: 999px; font-size: 16px; font-weight: 600; width: 100%; box-shadow: 0 4px 20px rgba(236,72,153,0.35); }
@@ -133,6 +157,9 @@ export default async function HomePage() {
           .hero-badge { margin-left: auto; margin-right: auto; }
           .hero-right { order: 2; }
           .hero-left { order: 1; }
+          .chef-mia { flex-direction: column; padding: 40px 24px; gap: 36px; }
+          .chef-title { font-size: 26px; }
+          .feature-grid { grid-template-columns: 1fr; gap: 20px; }
         }
       `}</style>
 
@@ -234,68 +261,71 @@ export default async function HomePage() {
         </div>
       </div>
 
+      {/* CHEF MÍA */}
+      <section className="chef-mia">
+        <div className="chef-mia-left">
+          <div className="chef-eyebrow">
+            <div className="chef-avatar-sm">
+              <img src={CHEF_MIA_URL} alt="Chef Mía" />
+            </div>
+            <span className="chef-eyebrow-text">Inteligencia artificial</span>
+          </div>
+          <h2 className="chef-title">Chef Mía sabe qué hay en tu nevera</h2>
+          <p className="chef-desc">Dile qué ingredientes tienes y te sugiere recetas reales de la app. Sin desperdicio, sin excusas para no cocinar.</p>
+          <div className="chef-chips">
+            <span className="chef-chip">¿Qué hago con pollo y papa?</span>
+            <span className="chef-chip">Algo rápido para cenar</span>
+            <span className="chef-chip">Receta sin gluten</span>
+          </div>
+        </div>
+        <div className="chef-mia-right">
+          <div className="chat">
+            <div className="chat-bubble-wrap user">
+              <div className="bubble-text bubble-user">Tengo pollo, papa y cebolla. ¿Qué cocino?</div>
+            </div>
+            <div className="chat-bubble-wrap">
+              <div className="chat-avatar"><img src={CHEF_MIA_URL} alt="Chef Mía" /></div>
+              <div className="bubble-text bubble-mia">¡Perfecto para un Ajiaco! Lo tienes en la app, con paso a paso.</div>
+            </div>
+            <div className="chat-bubble-wrap user">
+              <div className="bubble-text bubble-user">Sí, y algo más rápido para mañana?</div>
+            </div>
+            <div className="chat-bubble-wrap">
+              <div className="chat-avatar"><img src={CHEF_MIA_URL} alt="Chef Mía" /></div>
+              <div className="bubble-text bubble-mia">Con esos ingredientes, Pollo al ajillo en 25 min. Te lo muestro.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FEATURES */}
       <div className="features">
         <div className="features-inner">
           <h2>¿Por qué La Mia Cucina?</h2>
-          <div className="feature-list">
+          <div className="feature-grid">
 
-            <div className="feature-item">
-              <div className="feature-icon" style={{ background: '#D1FAE5' }}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="2" width="20" height="20"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
+            <div className="feature-col">
+              <div className="feature-icon-circle" style={{ background: '#D1FAE5' }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="2" width="22" height="22"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
               </div>
-              <div className="feature-text">
-                <h3>Instrucciones claras paso a paso</h3>
-                <p>Pasos cortos y simples que cualquiera puede seguir sin confundirse.</p>
-              </div>
+              <h3>Pasos que no confunden</h3>
+              <p>Instrucciones cortas en español real, con el paso activo siempre resaltado.</p>
             </div>
 
-            <div className="feature-item">
-              <div className="feature-icon" style={{ background: '#D1FAE5' }}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="1.8" width="20" height="20">
-                  <ellipse cx="12" cy="15" rx="5" ry="6"/>
-                  <path d="M12 9 C10 6 8 5 9 3"/>
-                  <path d="M12 9 C12 5 12 4 12 2"/>
-                  <path d="M12 9 C14 6 16 5 15 3"/>
-                  <line x1="9" y1="12" x2="15" y2="12"/>
-                  <line x1="8" y1="15" x2="16" y2="15"/>
-                  <line x1="9" y1="18" x2="15" y2="18"/>
-                </svg>
+            <div className="feature-col">
+              <div className="feature-icon-circle" style={{ background: '#FCE7F3' }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#EC4899" strokeWidth="2" width="22" height="22"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
               </div>
-              <div className="feature-text">
-                <h3>Ingredientes organizados por categoría</h3>
-                <p>Sabe exactamente qué comprar antes de empezar a cocinar.</p>
-              </div>
+              <h3>Guarda tus favoritas</h3>
+              <p>Acceso rápido a lo que más usas. Disponibles sin internet.</p>
             </div>
 
-            <div className="feature-item">
-              <div className="feature-icon" style={{ background: '#D1FAE5' }}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="2" width="20" height="20"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <div className="feature-col">
+              <div className="feature-icon-circle" style={{ background: '#DBEAFE' }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="2" width="22" height="22"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
               </div>
-              <div className="feature-text">
-                <h3>Guarda y comparte tus favoritas</h3>
-                <p>Accede rápido a lo que más te gusta y comparte con quien quieras.</p>
-              </div>
-            </div>
-
-            <div className="feature-item">
-              <div className="feature-icon" style={{ background: '#FCE7F3', overflow: 'hidden' }}>
-                <img src={CHEF_MIA_URL} alt="Chef Mía" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </div>
-              <div className="feature-text">
-                <h3>Chef Mía — tu asistente IA</h3>
-                <p>Pregúntale qué cocinar según los ingredientes que tienes en casa.</p>
-              </div>
-            </div>
-
-            <div className="feature-item">
-              <div className="feature-icon" style={{ background: '#FEF3C7' }}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="#F59E0B" strokeWidth="2" width="20" height="20"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              </div>
-              <div className="feature-text">
-                <h3>Recomendaciones personalizadas</h3>
-                <p>Recetas que coinciden con tus gustos y lo que cocinas seguido.</p>
-              </div>
+              <h3>Busca por ingrediente</h3>
+              <p>Escribe lo que tienes y ve qué puedes cocinar hoy.</p>
             </div>
 
           </div>
