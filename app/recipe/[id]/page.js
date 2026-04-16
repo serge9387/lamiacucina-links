@@ -55,17 +55,24 @@ export default async function RecipePage({ params }) {
   const recipe = await getRecipe(params.id)
   if (!recipe) notFound()
 
-  let ingredients = []
+  let ingredientGroups = []
   if (recipe.ingredients) {
     const raw = typeof recipe.ingredients === 'string' ? JSON.parse(recipe.ingredients) : recipe.ingredients
     if (Array.isArray(raw)) {
-      ingredients = raw.map(item => {
+      ingredientGroups = [{ category: null, items: raw.map(item => {
         if (typeof item === 'string') return item
         const amount = item.amount || item.quantity || ''
         const unit = item.unit || ''
         const name = item.name || item.ingredient || ''
         return [amount, unit, name].filter(Boolean).join(' ')
-      })
+      }) }]
+    } else if (raw && typeof raw === 'object') {
+      const keys = Object.keys(raw)
+      const multiCategory = keys.length > 1
+      ingredientGroups = keys.map(key => ({
+        category: multiCategory && key !== 'Otros' ? key : null,
+        items: Array.isArray(raw[key]) ? raw[key] : [],
+      }))
     }
   }
 
@@ -132,17 +139,26 @@ export default async function RecipePage({ params }) {
           )}
         </div>
 
-        {ingredients.length > 0 && (
+        {ingredientGroups.length > 0 && (
           <section style={{ marginBottom: '28px' }}>
             <h2 style={{ fontSize: '18px', fontWeight: '700', color: '#1F2937', marginBottom: '14px', paddingBottom: '8px', borderBottom: '2px solid #D1FAE5' }}>Ingredientes</h2>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              {ingredients.map((ingredient, i) => (
-                <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '15px', color: '#374151', lineHeight: 1.4 }}>
-                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10B981', flexShrink: 0, marginTop: '7px' }} />
-                  {ingredient}
-                </li>
-              ))}
-            </ul>
+            {ingredientGroups.map((group, gi) => (
+              <div key={gi}>
+                {group.category && (
+                  <p style={{ fontSize: '14px', fontWeight: '700', color: '#374151', marginTop: gi === 0 ? 0 : '12px', marginBottom: '6px' }}>
+                    {group.category}
+                  </p>
+                )}
+                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  {group.items.map((ingredient, i) => (
+                    <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '15px', color: '#374151', lineHeight: 1.4 }}>
+                      <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10B981', flexShrink: 0, marginTop: '7px' }} />
+                      {ingredient}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </section>
         )}
 
