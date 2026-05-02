@@ -5,12 +5,14 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 );
 
-const FEATURED_RECIPE_TITLES = [
-  'Huevos al ajo',
-  'Guacamole',
-  'Pico de Gallo',
-  'Bowl de carne con plátano maduro',
+const STATIC_CARDS = [
+  { title: 'Guacamole', diff: 'Fácil', time: 10, bg: '#d4f0e4', emoji: '🥑' },
+  { title: 'Pico de Gallo', diff: 'Fácil', time: 10, bg: '#fee2e2', emoji: '🍅' },
+  { title: 'Huevos al ajo', diff: 'Fácil', time: 15, bg: '#fef9c3', emoji: '🍳' },
+  { title: 'Wrap keto fácil con tocineta', diff: 'Fácil', time: 10, bg: '#fce7f3', emoji: '🥓' },
 ];
+
+const FEATURED_RECIPE_TITLES = STATIC_CARDS.map(r => r.title);
 
 const getDifficultyLabel = (d) => {
   const l = d?.toLowerCase() || '';
@@ -227,48 +229,30 @@ export default async function HomePage() {
           <p>Una muestra de lo que te espera en la app</p>
         </div>
         <div className="recipe-grid">
-          {recipes.length > 0 ? recipes.map((recipe) => {
-            const diffStyle = getDifficultyStyle(recipe.difficulty);
-            const time = recipe.total_time || (recipe.prep_time + recipe.cook_time);
-            return (
-              <a key={recipe.id} href={`/recipe/${recipe.id}`} className="recipe-card">
-                {recipe.image_url ? (
-                  <img className="recipe-img" src={recipe.image_url} alt={recipe.title} />
-                ) : (
-                  <div className="recipe-placeholder" style={{ background: '#d4f0e4' }}>🍽️</div>
-                )}
-                <div className="recipe-info">
-                  <p className="recipe-title">{recipe.title}</p>
-                  <div className="recipe-meta">
-                    <span className="badge" style={diffStyle}>{getDifficultyLabel(recipe.difficulty)}</span>
-                    <span className="recipe-time">{time} min</span>
-                  </div>
-                </div>
-              </a>
-            );
-          }) : (
-            // Fallback si no hay recetas
-            [
-              { title: 'Huevos al ajo', diff: 'Fácil', time: 15, bg: '#fef9c3', emoji: '🍳' },
-              { title: 'Guacamole', diff: 'Fácil', time: 10, bg: '#d4f0e4', emoji: '🥑' },
-              { title: 'Pico de Gallo', diff: 'Fácil', time: 10, bg: '#fee2e2', emoji: '🍅' },
-              { title: 'Bowl de carne con plátano maduro', diff: 'Fácil', time: 30, bg: '#fde8d0', emoji: '🍌' },
-            ].map((r, i) => {
-              const diffStyle = getDifficultyStyle(r.diff);
+          {(() => {
+            const dbByTitle = Object.fromEntries((recipes || []).map(r => [r.title, r]));
+            return STATIC_CARDS.map((s, i) => {
+              const db = dbByTitle[s.title];
+              const diffStyle = getDifficultyStyle(db ? db.difficulty : s.diff);
+              const time = db ? (db.total_time || (db.prep_time + db.cook_time)) : s.time;
               return (
-                <a key={i} href={APP_STORE_URL} className="recipe-card">
-                  <div className="recipe-placeholder" style={{ background: r.bg }}>{r.emoji}</div>
+                <a key={i} href={db ? `/recipe/${db.id}` : APP_STORE_URL} className="recipe-card">
+                  {db?.image_url ? (
+                    <img className="recipe-img" src={db.image_url} alt={db.title} />
+                  ) : (
+                    <div className="recipe-placeholder" style={{ background: s.bg }}>{s.emoji}</div>
+                  )}
                   <div className="recipe-info">
-                    <p className="recipe-title">{r.title}</p>
+                    <p className="recipe-title">{s.title}</p>
                     <div className="recipe-meta">
-                      <span className="badge" style={diffStyle}>{r.diff}</span>
-                      <span className="recipe-time">{r.time} min</span>
+                      <span className="badge" style={diffStyle}>{getDifficultyLabel(db ? db.difficulty : s.diff)}</span>
+                      <span className="recipe-time">{time} min</span>
                     </div>
                   </div>
                 </a>
               );
-            })
-          )}
+            });
+          })()}
         </div>
       </div>
 
