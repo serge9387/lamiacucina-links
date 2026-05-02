@@ -3,6 +3,9 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css'
 
 export const metadata = {
+  alternates: {
+    canonical: 'https://lamiacucina.app',
+  },
   title: 'La Mia Cucina — Tu colección personal de recetas',
   description: 'App gratis para iPhone con recetas curadas de cocina italiana, colombiana, mexicana y más. Con Chef Mía, tu asistente IA personal.',
   icons: {
