@@ -20,6 +20,9 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
   },
+  other: {
+    'apple-itunes-app': 'app-id=6757924220',
+  },
 }
 
 export default function RootLayout({ children }) {

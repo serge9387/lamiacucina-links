@@ -5,11 +5,11 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 );
 
-const FEATURED_RECIPE_IDS = [
-  '1373c327-2f9d-4eb2-8f4b-c2471a24dcbc',
-  '14853726-4175-4115-b8bf-1e57ed1ba6bf',
-  '6acc3f28-d3a7-422a-93e8-6f0600a320df',
-  'c148147b-7bb3-4b3b-8a9b-4ab74942718f'
+const FEATURED_RECIPE_TITLES = [
+  'Huevos al ajo',
+  'Guacamole',
+  'Pico de Gallo',
+  'Bowl de carne con plátano maduro',
 ];
 
 const getDifficultyLabel = (d) => {
@@ -47,7 +47,7 @@ export default async function HomePage() {
       .from('recipes')
       .select('id, title, image_url, difficulty, total_time, prep_time, cook_time')
       .eq('is_published', true)
-      .in('id', FEATURED_RECIPE_IDS.length > 0 ? FEATURED_RECIPE_IDS : ['00000000-0000-0000-0000-000000000000'])
+      .in('title', FEATURED_RECIPE_TITLES)
       .limit(4);
     recipes = data || [];
   } catch (e) {
@@ -182,7 +182,7 @@ export default async function HomePage() {
             Disponible gratis en App Store
           </div>
           <h1 className="hero-headline">Deja de buscar.<br/>Empieza a cocinar.</h1>
-          <p className="hero-sub">Tu colección personal de recetas curadas, con una IA que te dice qué cocinar con lo que tienes en casa.</p>
+          <p className="hero-sub">Recetas para cocinar hoy, no para guardar y olvidar.</p>
           <div>
             <a href={APP_STORE_URL} className="btn-hero">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
@@ -249,10 +249,10 @@ export default async function HomePage() {
           }) : (
             // Fallback si no hay recetas
             [
-              { title: 'Espaguetis a la Carrettiera', diff: 'Fácil', time: 35, bg: '#d4f0e4', emoji: '🍝' },
-              { title: 'Tacos de Pollo al Pastor', diff: 'Medio', time: 40, bg: '#fde8d0', emoji: '🌮' },
-              { title: 'Bandeja Paisa Colombiana', diff: 'Difícil', time: 90, bg: '#fce4ec', emoji: '🫘' },
-              { title: 'Bowl Griego de Pollo', diff: 'Fácil', time: 30, bg: '#e0d4f5', emoji: '🥗' },
+              { title: 'Huevos al ajo', diff: 'Fácil', time: 15, bg: '#fef9c3', emoji: '🍳' },
+              { title: 'Guacamole', diff: 'Fácil', time: 10, bg: '#d4f0e4', emoji: '🥑' },
+              { title: 'Pico de Gallo', diff: 'Fácil', time: 10, bg: '#fee2e2', emoji: '🍅' },
+              { title: 'Bowl de carne con plátano maduro', diff: 'Fácil', time: 30, bg: '#fde8d0', emoji: '🍌' },
             ].map((r, i) => {
               const diffStyle = getDifficultyStyle(r.diff);
               return (
