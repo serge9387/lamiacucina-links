@@ -1,4 +1,17 @@
 {
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.lamiacucina.app"
+        }
+      ],
+      "destination": "https://lamiacucina.app/$1",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/.well-known/apple-app-site-association",
