@@ -332,23 +332,13 @@ export default async function HomePage() {
             <p>Herramientas de cocina que siempre necesitas</p>
           </div>
           <div className="tool-tabs" role="tablist">
-            <button className="tab-btn active" id="tab-conversor" role="tab" onClick={() => {
-              document.getElementById('tab-conversor')?.classList.add('active');
-              document.getElementById('tab-porciones')?.classList.remove('active');
-              document.getElementById('panel-conversor')?.classList.add('active');
-              document.getElementById('panel-porciones')?.classList.remove('active');
-            }}>Conversor de medidas</button>
-            <button className="tab-btn" id="tab-porciones" role="tab" onClick={() => {
-              document.getElementById('tab-porciones')?.classList.add('active');
-              document.getElementById('tab-conversor')?.classList.remove('active');
-              document.getElementById('panel-porciones')?.classList.add('active');
-              document.getElementById('panel-conversor')?.classList.remove('active');
-            }}>Calculadora de porciones</button>
+            <button className="tab-btn active" id="tab-conversor" role="tab">Conversor de medidas</button>
+            <button className="tab-btn" id="tab-porciones" role="tab">Calculadora de porciones</button>
           </div>
           <div className="tool-panel active" id="panel-conversor">
             <div className="tool-card">
               <label className="tool-label" htmlFor="conv-ingr">¿Qué vas a medir?</label>
-              <select className="tool-select" id="conv-ingr" onChange={() => calcConv()} style={{ marginBottom: 14 }}>
+              <select className="tool-select" id="conv-ingr" style={{ marginBottom: 14 }}>
                 <option value="liquido">Líquidos (agua, leche, aceite…)</option>
                 <option value="harina">Harina de trigo</option>
                 <option value="azucar">Azúcar blanca</option>
@@ -358,12 +348,12 @@ export default async function HomePage() {
               <div className="tool-row">
                 <div style={{ flex: 1 }}>
                   <label className="tool-label" htmlFor="conv-amt">Cantidad</label>
-                  <input className="tool-input" type="number" id="conv-amt" defaultValue="1" min="0.25" step="0.25" onInput={() => calcConv()} />
+                  <input className="tool-input" type="number" id="conv-amt" defaultValue="1" min="0.25" step="0.25" />
                 </div>
                 <div className="or-arrow">→</div>
                 <div style={{ flex: 1 }}>
                   <label className="tool-label" htmlFor="conv-from">Unidad</label>
-                  <select className="tool-select" id="conv-from" onChange={() => calcConv()}>
+                  <select className="tool-select" id="conv-from">
                     <option value="taza">Taza (240 ml)</option>
                     <option value="cucharada">Cucharada</option>
                     <option value="cucharadita">Cucharadita</option>
@@ -385,13 +375,13 @@ export default async function HomePage() {
               <div className="tool-row">
                 <div style={{ flex: 1 }}>
                   <label className="tool-label" htmlFor="por-orig">Receta para</label>
-                  <input className="tool-input" type="number" id="por-orig" defaultValue="4" min="1" step="1" onInput={() => calcPor()} />
+                  <input className="tool-input" type="number" id="por-orig" defaultValue="4" min="1" step="1" />
                   <div style={{ fontSize: 11, color: '#9CA3AF', marginTop: 4 }}>porciones originales</div>
                 </div>
                 <div className="or-arrow">→</div>
                 <div style={{ flex: 1 }}>
                   <label className="tool-label" htmlFor="por-want">Quiero hacer</label>
-                  <input className="tool-input" type="number" id="por-want" defaultValue="6" min="1" step="1" onInput={() => calcPor()} />
+                  <input className="tool-input" type="number" id="por-want" defaultValue="6" min="1" step="1" />
                   <div style={{ fontSize: 11, color: '#9CA3AF', marginTop: 4 }}>porciones deseadas</div>
                 </div>
               </div>
@@ -553,6 +543,27 @@ export default async function HomePage() {
           document.getElementById('por-result').textContent = d;
           document.getElementById('por-hint').textContent = 'Multiplica cada ingrediente por ' + d;
         }
+
+        document.getElementById('tab-conversor').addEventListener('click', function() {
+          document.getElementById('tab-conversor').classList.add('active');
+          document.getElementById('tab-porciones').classList.remove('active');
+          document.getElementById('panel-conversor').classList.add('active');
+          document.getElementById('panel-porciones').classList.remove('active');
+        });
+        document.getElementById('tab-porciones').addEventListener('click', function() {
+          document.getElementById('tab-porciones').classList.add('active');
+          document.getElementById('tab-conversor').classList.remove('active');
+          document.getElementById('panel-porciones').classList.add('active');
+          document.getElementById('panel-conversor').classList.remove('active');
+        });
+
+        document.getElementById('conv-ingr').addEventListener('change', calcConv);
+        document.getElementById('conv-amt').addEventListener('input', calcConv);
+        document.getElementById('conv-from').addEventListener('change', calcConv);
+        document.getElementById('por-orig').addEventListener('input', calcPor);
+        document.getElementById('por-want').addEventListener('input', calcPor);
+
+        calcConv();
       `}} />
     </>
   );
