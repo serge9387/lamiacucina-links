@@ -9,7 +9,7 @@ const STATIC_CARDS = [
   { title: 'Guacamole', diff: 'Fácil', time: 10, bg: '#d4f0e4', emoji: '🥑' },
   { title: 'Salteado de lomo con papa criolla', diff: 'Fácil', time: 30, bg: '#fee2e2', emoji: '🥩' },
   { title: 'Huevos al ajo', diff: 'Fácil', time: 15, bg: '#fef9c3', emoji: '🍳' },
-  { title: 'Wrap keto fácil con tocineta', diff: 'Fácil', time: 10, bg: '#fce7f3', emoji: '🥓' },
+  { title: 'Wrap Keto Fácil', diff: 'Fácil', time: 10, bg: '#fce7f3', emoji: '🥓' },
 ];
 
 const FEATURED_RECIPE_TITLES = STATIC_CARDS.map(r => r.title);
