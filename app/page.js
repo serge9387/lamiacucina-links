@@ -226,7 +226,7 @@ export default async function HomePage() {
         <div className="hero-right">
           <div className="phone-frame">
             <div className="phone-screen">
-              <img src="/images/F5D5CD95-35FA-42D7-B390-7A3F46D7A29C_1_201_a.jpeg" alt="La Mia Cucina app screenshot" />
+              <img src="/images/F5D5CD95-35FA-42D7-B390-7A3F46D7A29C_1_201_a.jpeg" alt="La Mia Cucina app screenshot" fetchpriority="high" />
             </div>
           </div>
         </div>
@@ -249,7 +249,7 @@ export default async function HomePage() {
                 return (
                   <a key={i} href={db ? `/recipe/${db.id}` : APP_STORE_URL} className="recipe-card">
                     {db?.image_url ? (
-                      <img className="recipe-img" src={db.image_url} alt={db.title} />
+                      <img className="recipe-img" src={db.image_url} alt={db.title} width={300} height={110} />
                     ) : (
                       <div className="recipe-placeholder" style={{ background: s.bg }}>{s.emoji}</div>
                     )}
