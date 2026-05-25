@@ -1,5 +1,6 @@
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import Script from 'next/script';
 import './globals.css'
 
 export const metadata = {
@@ -32,13 +33,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XEB795BV7P"></script>
-        <script dangerouslySetInnerHTML={{ __html: `
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XEB795BV7P');
-`}} />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-XEB795BV7P"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XEB795BV7P');
+  `}
+        </Script>
         {children}
         <Analytics />
         <SpeedInsights />
