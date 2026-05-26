@@ -1,7 +1,14 @@
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Script from 'next/script';
+import { DM_Sans } from 'next/font/google';
 import './globals.css'
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '700', '800'],
+  display: 'swap',
+});
 
 export const metadata = {
   alternates: {
@@ -31,7 +38,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es">
+    <html lang="es" className={dmSans.className}>
       <body>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-XEB795BV7P"
