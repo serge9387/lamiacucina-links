@@ -1,6 +1,5 @@
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import Script from 'next/script';
 import { DM_Sans } from 'next/font/google';
 import './globals.css'
 
@@ -40,18 +39,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es" className={dmSans.className}>
       <body>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-XEB795BV7P"
-          strategy="lazyOnload"
-        />
-        <Script id="ga4-init" strategy="lazyOnload">
-          {`
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XEB795BV7P');
-  `}
-        </Script>
         {children}
         <Analytics />
         <SpeedInsights />
