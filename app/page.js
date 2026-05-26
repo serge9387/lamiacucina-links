@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import Image from 'next/image';
 
 const supabase = createClient(
   'https://xyxdgyqduvjsepzyblju.supabase.co',
@@ -71,8 +72,10 @@ export default async function HomePage() {
 
   return (
     <>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap" />
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap');
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; background: #F0FDF9; color: #1F2937; }
         a { text-decoration: none; }
@@ -226,7 +229,7 @@ export default async function HomePage() {
         <div className="hero-right">
           <div className="phone-frame">
             <div className="phone-screen">
-              <img src="/images/F5D5CD95-35FA-42D7-B390-7A3F46D7A29C_1_201_a.jpeg" alt="La Mia Cucina app screenshot" fetchpriority="high" />
+              <Image src="/images/F5D5CD95-35FA-42D7-B390-7A3F46D7A29C_1_201_a.jpeg" alt="La Mia Cucina app screenshot" width={204} height={434} priority style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             </div>
           </div>
         </div>
